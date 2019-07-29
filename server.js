@@ -8,16 +8,22 @@ const app = express()
 // React app cliente
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-// Api endpoint
+// Api endpoint busqueda
 app.get('/api/items', (req, res) => {
 	consoleLog(['PARAMS: ', req.query.q])
 
 	fetch(`https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}&limit=4`)
 		.then(resp => resp.json())
 		.then(data => {
-			const [categories] = data.filters.map(
-				filter => filter.id === 'category' && filter.values.map(val => val.name)
-			)
+			const categories = data.filters.length
+				? data.filters.map(
+						filter =>
+							filter.id === 'category' &&
+							filter.values.map(val => val.path_from_root.map(cat => cat.name))
+				  )[0][0]
+				: []
+
+			console.log('FILTERS_>', categories)
 
 			const items = data.results.map(result => {
 				const item = {
@@ -30,7 +36,8 @@ app.get('/api/items', (req, res) => {
 					},
 					picture: result.thumbnail,
 					condition: result.condition,
-					free_shipping: result.shipping.free_shipping
+					free_shipping: result.shipping.free_shipping,
+					location: result.address.state_name
 				}
 				return item
 			})
@@ -39,12 +46,62 @@ app.get('/api/items', (req, res) => {
 					name: '',
 					lastname: ''
 				},
-				categories,
+				categories: categories,
 				items
 			})
 			consoleLog('Search...')
 		})
 		.catch(error => {
+			consoleLog('Error :(', error)
+			res.status(500).json({
+				...error
+			})
+		})
+})
+// Api endpoint producto
+app.get('/api/item/:id', (req, res) => {
+	consoleLog(['PRODUCT ID: ', req.params.id])
+
+	const productData = fetch(`https://api.mercadolibre.com/items/${req.params.id}`)
+		.then(resp => resp.json())
+		.then(product => {
+			const item = {
+				id: product.id,
+				title: product.title,
+				price: {
+					currency: product.currency_id,
+					amount: Math.floor(product.price),
+					decimals: (product.price % 1).toFixed(2)
+				},
+				pictures: product.pictures.map(pic => pic.secure_url),
+				condition: product.condition,
+				free_shipping: product.shipping.free_shipping,
+				sold_quantity: product.sold_quantity
+			}
+			return item
+		})
+		.catch(err => consoleLog('prod err: ', err))
+
+	const descriptionData = fetch(`https://api.mercadolibre.com/items/${req.params.id}/description`)
+		.then(resp => resp.json())
+		.then(({ plain_text }) => plain_text)
+		.catch(err => consoleLog('desc err: ', err))
+
+	Promise.all([productData, descriptionData])
+		.then(data => {
+			const [item, description] = data
+			res.json({
+				author: {
+					name: '',
+					lastname: ''
+				},
+				item,
+				description
+			})
+			consoleLog('Search...')
+		})
+		.catch(error => {
+			consoleLog('Error :(', error)
 			res.status(500).json({
 				...error
 			})
