@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 
-const SearchBox = ({ history }) => {
+import searchIcon from '../images/search-icon.png'
+
+const SearchBox = ({ history, className }) => {
 	const [query, setQuery] = useState('')
 
 	const handleSubmit = e => {
@@ -17,18 +19,21 @@ const SearchBox = ({ history }) => {
 	}
 
 	return (
-		<div className="search">
-			<form className="search-form" onSubmit={handleSubmit}>
+		<form className={className} onSubmit={handleSubmit}>
+			<div className="input-group w-100">
 				<input
 					type="search"
 					name="search"
+					className="form-control border-0"
 					value={query}
 					onChange={e => setQuery(e.target.value)}
 					placeholder="Nunca dejes de buscar..."
 				/>
-				<input type="submit" value="Buscar" />
-			</form>
-		</div>
+				<button className="input-group-append border-0 rounded-right py-2 px-3" type="submit">
+					<img className="search-icon" src={searchIcon} alt="Buscar" />
+				</button>
+			</div>
+		</form>
 	)
 }
 

@@ -1,0 +1,23 @@
+.main-header {
+	display: flex;
+	height: 70px;
+	transition: height 0.5s ease-in-out;
+
+	&.full {
+		height: 100%;
+	}
+	.logo {
+		width: 55px;
+
+		a {
+			color: #fff;
+			display: block;
+			width: 100%;
+
+			img {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+}

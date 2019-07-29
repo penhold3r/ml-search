@@ -1,8 +1,13 @@
-$primary-color: #ffe600;
-$accent-color: #3483fa;
+$body-bg: #eee;
+$body-color: #333;
 
-$dark-grey: #666666;
-$grey: #999999;
-$light-grey: #eeeeee;
+$theme-colors: (
+	'primary': #3483fa,
+	'brand-color': #ffe600,
+	'gray': #999999,
+	'gray-dark': #666666
+);
 
-$black: #333333;
+$breadcrumb-divider: quote('>');
+
+@import '~bootstrap/scss/bootstrap';

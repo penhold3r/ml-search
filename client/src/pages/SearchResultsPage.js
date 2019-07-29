@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import queryString from 'query-string'
 
+import SearchItem from '../components/SearchItem'
+import Breadcrumbs from '../components/Breadcrumbs'
+
 const SearchResultsPage = ({ location }) => {
 	const [params, setParams] = useState({})
+	const [breadcrumbs, setBreadcrumbs] = useState([])
 	const [results, setResults] = useState([])
 
 	params.search !== queryString.parse(location.search).search &&
@@ -14,20 +18,20 @@ const SearchResultsPage = ({ location }) => {
 		Object.getOwnPropertyNames(params).length &&
 			fetch(`/api/items?q=${params.search.replace(' ', '+')}`)
 				.then(resp => resp.json())
-				.then(({ items }) => setResults(items))
+				.then(({ categories, items }) => {
+					const bc = [...categories, ...params.search.split(' ')]
+					setResults(items)
+					setBreadcrumbs(bc)
+				})
 	}, [params])
 
 	return (
-		<section className="results">
-			<h2>
-				Resultados: <strong>{params.search}</strong>
-			</h2>
-			<div>
+		<section className="results container">
+			<Breadcrumbs breadcrumbs={breadcrumbs} />
+			<div className="results__list bg-white rounded p-4">
 				{results.length &&
 					results.map(item => (
-						<div key={item.id}>
-							<h3>{item.title}</h3>
-						</div>
+						<SearchItem key={item.id} breadcrumbs={breadcrumbs} item={item} />
 					))}
 			</div>
 		</section>

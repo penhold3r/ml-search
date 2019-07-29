@@ -1,0 +1,15 @@
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('Proxima_Nova_Bold-webfont.eot');
+	src: url('Proxima_Nova_Bold-webfont.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: url('Proxima_Nova_Regular-webfont.eot');
+	src: url('Proxima_Nova_Regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
