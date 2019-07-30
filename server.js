@@ -23,8 +23,6 @@ app.get('/api/items', (req, res) => {
 				  )[0][0]
 				: []
 
-			console.log('FILTERS_>', categories)
-
 			const items = data.results.map(result => {
 				const item = {
 					id: result.id,
@@ -80,7 +78,7 @@ app.get('/api/item/:id', (req, res) => {
 			}
 			return item
 		})
-		.catch(err => consoleLog('prod err: ', err))
+		.catch(err => ({ status: 404, msg: err }))
 
 	const descriptionData = fetch(`https://api.mercadolibre.com/items/${req.params.id}/description`)
 		.then(resp => resp.json())
