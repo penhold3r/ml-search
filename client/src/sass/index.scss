@@ -5,11 +5,17 @@ body {
 	font-size: 16px;
 	min-height: 100vh;
 
-	.results {
+	.results,
+	.product {
 		margin-top: 70px;
+	}
+	.not-found {
+		margin-top: calc(70px + 2rem);
 	}
 }
 
 @import './components/header';
 @import './components/search-box';
+@import './components/loading';
 @import './components/search-item';
+@import './components/product-page';

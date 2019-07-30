@@ -1,0 +1,27 @@
+.product {
+	&__body {
+		display: grid;
+		grid-gap: 1rem;
+		grid-template-columns: 680px 1fr;
+
+		.product-data {
+			.status {
+				font-size: 14px;
+			}
+
+			.title {
+				font-size: 24px;
+			}
+
+			.price {
+				font-size: 46px;
+			}
+		}
+
+		.description {
+			&__title {
+				font-size: 28px;
+			}
+		}
+	}
+}

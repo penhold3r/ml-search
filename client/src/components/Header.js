@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
+import Link from './Link'
 import SearchBox from './SearchBox'
 
 import logo from '../images/mercado-libre-logo.png'
@@ -19,11 +21,14 @@ const Header = ({ history }) => {
 							<img src={logo} alt="Mercado Libre" />
 						</Link>
 					</h1>
-					<SearchBox className="search-form form-inline flex-grow-1 ml-4" />
+					<SearchBox className="search-form form-inline flex-grow-1 ml-150" />
 				</nav>
 			</div>
 		</header>
 	)
 }
 
+Header.propTypes = {
+	history: PropTypes.object
+}
 export default withRouter(Header)

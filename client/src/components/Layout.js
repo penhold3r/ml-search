@@ -3,72 +3,25 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
 import Header from './Header'
-import Footer from './Footer'
+//import Footer from './Footer'
 
-import 'sanitize.css'
-import '../styles/icons.scss'
-import '../styles/index.scss'
+import '../sass/index.scss'
 
 import ICO from '../images/favicon.ico'
 import PNG from '../images/favicon.png'
 
-const Layout = ({ pageTitle, ogImg, children, overflow }) => {
-	const title = 'penHolder Designerd'
+const Layout = ({ pageTitle, children }) => {
+	const title = 'Mercado Libre'
 	const siteTitle = pageTitle ? `${pageTitle} - ${title}` : title
 	return (
 		<>
 			<Helmet
-				htmlAttributes={{ lang: 'en' }}
+				htmlAttributes={{ lang: 'es' }}
 				title={siteTitle}
 				meta={[
 					{
-						property: 'og:image',
-						content: ogImg
-					},
-					{
-						name: 'twitter:image',
-						content: ogImg
-					},
-					{
 						name: 'description',
-						content: 'Graphic Design and Stuffs'
-					},
-					{
-						property: 'og:description',
-						content: 'Graphic Design and Stuffs'
-					},
-					{
-						name: 'twitter:description',
-						content: 'Graphic Design and Stuffs'
-					},
-					{
-						property: 'og:title',
-						content: siteTitle
-					},
-					{
-						name: 'twitter:title',
-						content: siteTitle
-					},
-					{
-						property: 'og:url',
-						content: 'https://penholder.net/'
-					},
-					{
-						name: 'twitter:site',
-						content: 'https://penholder.net/'
-					},
-					{
-						property: 'og:type',
-						content: 'Website'
-					},
-					{
-						name: 'twitter:card',
-						content: 'summary_large_image'
-					},
-					{
-						name: 'keywords',
-						content:
-							'diseno, disenador, diseño, diseñador, grafico, gráfico, web, desarrollo, desarrollador, portfolio'
+						content: 'La comunidad de compra y venta online más grande de América Latina.'
 					}
 				]}
 				link={[
@@ -84,22 +37,20 @@ const Layout = ({ pageTitle, ogImg, children, overflow }) => {
 						sizes: '32x32 192x192'
 					},
 					{
-						href: 'https://fonts.googleapis.com/css?family=Maven+Pro:400,900&display=swap',
-						rel: 'stylesheet'
+						href: '/fonts/fonts.min.css',
+						rel: 'stylesheet',
+						foo: 'Bar'
 					}
 				]}
 			/>
-
 			<Header siteTitle={title} />
-			<div className={overflow ? 'main-content overflow' : 'main-content'}>{children}</div>
-			<Footer />
+			{children}
 		</>
 	)
 }
 
 Layout.propTypes = {
 	title: PropTypes.string,
-	ogImg: PropTypes.string,
 	children: PropTypes.node.isRequired
 }
 

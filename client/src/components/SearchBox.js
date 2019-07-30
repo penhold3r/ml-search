@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import searchIcon from '../images/search-icon.png'
 
@@ -29,12 +30,20 @@ const SearchBox = ({ history, className }) => {
 					onChange={e => setQuery(e.target.value)}
 					placeholder="Nunca dejes de buscar..."
 				/>
-				<button className="input-group-append border-0 rounded-right py-2 px-3" type="submit">
+				<button
+					className="input-group-append border-0 rounded-right py-050 px-100"
+					type="submit"
+				>
 					<img className="search-icon" src={searchIcon} alt="Buscar" />
 				</button>
 			</div>
 		</form>
 	)
+}
+
+SearchBox.propTypes = {
+	history: PropTypes.object,
+	className: PropTypes.string
 }
 
 export default withRouter(SearchBox)

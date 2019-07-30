@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import queryString from 'query-string'
+import PropTypes from 'prop-types'
 
+import Layout from '../components/Layout'
+import Loading from '../components/Loading'
 import SearchItem from '../components/SearchItem'
 import Breadcrumbs from '../components/Breadcrumbs'
 
@@ -26,16 +29,30 @@ const SearchResultsPage = ({ location }) => {
 	}, [params])
 
 	return (
-		<section className="results container">
-			<Breadcrumbs breadcrumbs={breadcrumbs} />
-			<div className="results__list bg-white rounded p-4">
-				{results.length &&
-					results.map(item => (
-						<SearchItem key={item.id} breadcrumbs={breadcrumbs} item={item} />
-					))}
-			</div>
-		</section>
+		<Layout pageTitle={`Resultado de búsqueda: ${params.search}`}>
+			<section className="results container">
+				<Breadcrumbs breadcrumbs={breadcrumbs} />
+				<div className="results__list bg-white rounded">
+					{!results.length ? (
+						<Loading />
+					) : (
+						results.map((item, key, arr) => (
+							<SearchItem
+								key={item.id}
+								breadcrumbs={breadcrumbs}
+								item={item}
+								last={arr.length - 1 === key}
+							/>
+						))
+					)}
+				</div>
+			</section>
+		</Layout>
 	)
+}
+
+SearchResultsPage.propTypes = {
+	location: PropTypes.object
 }
 
 export default SearchResultsPage

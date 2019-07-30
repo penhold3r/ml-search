@@ -1,0 +1,21 @@
+.loading {
+	display: flex;
+	padding: 4rem;
+	grid-column: 1 /-1;
+
+	.spinner {
+		animation: spin 0.75s linear infinite;
+		border: 3px solid var(--gray-light);
+		border-left: 3px solid var(--primary);
+		border-radius: 50%;
+		height: 50px;
+		margin: auto;
+		width: 50px;
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
