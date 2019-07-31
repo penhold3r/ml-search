@@ -7,7 +7,10 @@ import Price from './Price'
 import shippingIcon from '../images/free-shiping-icon.png'
 
 const SearchItem = ({ item, breadcrumbs, last }) => (
-	<div className={`search-item d-flex p-100 ${!last && 'border-bottom border-gray-light'}`}>
+	<div
+		className={`search-item d-flex flex-wrap flex-md-nowrap p-100 ${!last &&
+			'border-bottom border-gray-light'}`}
+	>
 		<Link
 			to={{
 				pathname: `/item/${item.id}`,
@@ -20,10 +23,10 @@ const SearchItem = ({ item, breadcrumbs, last }) => (
 			<img src={item.picture} alt="[ imagen ]" />
 		</Link>
 		<div className="search-item__content d-flex flex-column flex-grow-1">
-			<h3 className="title order-2 m-0">
+			<h3 className="title order-2 mt-0 mb-100 m-md-0">
 				<strong>{item.title}</strong>
 			</h3>
-			<h4 className="price order-1 mb-200">
+			<h4 className="price order-1 mb-100 mb-md-200">
 				<Link
 					to={{
 						pathname: `/item/${item.id}`,

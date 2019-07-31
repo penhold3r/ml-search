@@ -37,4 +37,21 @@ $spacers: (
 
 $breadcrumb-divider: quote('>');
 
+$enable-sizing-breakpoints: true;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 640px,
+	md: 800px,
+	lg: 1000px,
+	xl: 1480px
+);
+
+$container-max-widths: (
+	sm: 640px,
+	md: 800px,
+	lg: 1100px,
+	xl: 1300px
+);
+
 @import '~bootstrap/scss/bootstrap';
