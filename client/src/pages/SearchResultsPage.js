@@ -32,7 +32,7 @@ const SearchResultsPage = ({ location }) => {
 		<Layout pageTitle={`Resultado de búsqueda: ${params.search}`}>
 			<section className="results container">
 				<Breadcrumbs breadcrumbs={breadcrumbs} />
-				<div className="results__list bg-white rounded">
+				<div className="results__list bg-white shadow-sm rounded">
 					{!results.length ? (
 						<Loading />
 					) : (

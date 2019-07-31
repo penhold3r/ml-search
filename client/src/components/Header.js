@@ -17,7 +17,7 @@ const Header = ({
 	const homePage = isHome ? ' full' : ''
 
 	return (
-		<header className={`main-header bg-brand-color fixed-top${homePage}`}>
+		<header className={`main-header bg-brand-color shadow-sm fixed-top${homePage}`}>
 			<div className="container my-auto">
 				<nav
 					className={`navbar justify-content-start ${
@@ -34,7 +34,7 @@ const Header = ({
 						</Link>
 					</h1>
 					<SearchBox
-						className={`search-form form-inline flex-grow-1 ${
+						className={`search-form shadow-sm form-inline flex-grow-1 ${
 							isHome ? 'ml-md-150 w-100' : 'ml-150'
 						}`}
 					/>

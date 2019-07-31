@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import ScrollToTop from './components/ScrollToTop'
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 import IndexPage from './pages/IndexPage'
 import SearchResultsPage from './pages/SearchResultsPage'
@@ -21,6 +22,7 @@ const App = () => {
 					<Route path="/404" component={NotFoundPage} />
 					<Route component={NotFoundPage} />
 				</Switch>
+				<Footer />
 			</ScrollToTop>
 		</BrowserRouter>
 	)

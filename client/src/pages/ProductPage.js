@@ -31,7 +31,7 @@ const ProductPage = ({ match, location }) => {
 			<section className="product container">
 				<Breadcrumbs breadcrumbs={breadcrumbs} />
 
-				<div className="product__body bg-white rounded p-200">
+				<div className="product__body bg-white shadow-sm rounded p-200">
 					{!Object.getOwnPropertyNames(product).length ? (
 						<Loading />
 					) : product.item.status === 404 ? (
