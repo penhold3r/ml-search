@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 
-import Header from './Header'
-//import Footer from './Footer'
-
 import '../sass/index.scss'
 
 import ICO from '../images/favicon.ico'
@@ -43,7 +40,6 @@ const Layout = ({ pageTitle, children }) => {
 					}
 				]}
 			/>
-			<Header siteTitle={title} />
 			{children}
 		</>
 	)

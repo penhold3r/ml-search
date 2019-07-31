@@ -6,18 +6,44 @@
 	&.full {
 		height: 100%;
 	}
-	.logo {
-		width: 55px;
 
-		a {
-			color: #fff;
-			display: block;
-			width: 100%;
+	.navbar {
+		.logo {
+			width: 55px;
 
-			img {
+			a {
+				color: #fff;
 				display: block;
 				width: 100%;
+
+				img {
+					display: block;
+					width: 100%;
+				}
 			}
 		}
+
+		.search-form {
+			input {
+				@include placeholder {
+					transition: all 0.3s;
+				}
+
+				&:focus {
+					box-shadow: none;
+
+					@include placeholder {
+						opacity: 0;
+						padding-left: 3rem;
+					}
+				}
+			}
+		}
+	}
+}
+
+@include media-breakpoint-up(md) {
+	.search-form {
+		width: auto !important;
 	}
 }

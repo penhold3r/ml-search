@@ -7,21 +7,37 @@ import SearchBox from './SearchBox'
 
 import logo from '../images/mercado-libre-logo.png'
 
-const Header = ({ history }) => {
-	const { pathname } = history.location
+const Header = ({
+	history: {
+		location: { pathname }
+	}
+}) => {
+	const isHome = pathname === '/'
 
-	const homePage = pathname === '/' ? ' full' : ''
+	const homePage = isHome ? ' full' : ''
 
 	return (
 		<header className={`main-header bg-brand-color fixed-top${homePage}`}>
 			<div className="container my-auto">
-				<nav className="navbar justify-content-start">
-					<h1 className="logo navbar-brand m-0 p-0">
+				<nav
+					className={`navbar justify-content-start ${
+						isHome ? 'flex-column flex-md-row' : 'flex-row'
+					}`}
+				>
+					<h1
+						className={`logo navbar-brand mr-0 mt-0 p-0 ${
+							isHome ? 'mb-100 mb-md-0' : 'mb-0'
+						}`}
+					>
 						<Link to="/">
 							<img src={logo} alt="Mercado Libre" />
 						</Link>
 					</h1>
-					<SearchBox className="search-form form-inline flex-grow-1 ml-150" />
+					<SearchBox
+						className={`search-form form-inline flex-grow-1 ${
+							isHome ? 'ml-md-150 w-100' : 'ml-150'
+						}`}
+					/>
 				</nav>
 			</div>
 		</header>
@@ -31,4 +47,5 @@ const Header = ({ history }) => {
 Header.propTypes = {
 	history: PropTypes.object
 }
+
 export default withRouter(Header)

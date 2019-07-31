@@ -1,7 +1,8 @@
 .search-item {
 	&__image {
-		width: 180px;
-		height: 180px;
+		flex: 0 0 auto;
+		width: 80px;
+		height: 80px;
 
 		img {
 			display: block;
@@ -19,6 +20,8 @@
 	}
 
 	&__content {
+		width: calc(100% - 80px - 1rem);
+
 		.price {
 			font-size: 24px;
 
@@ -42,13 +45,33 @@
 
 		.title {
 			font-size: 18px;
-			max-width: 400px;
 		}
 	}
 
 	&__location {
+		margin-left: calc(80px + 1rem);
+
 		.city {
 			font-size: 12px;
 		}
+	}
+}
+
+@include media-breakpoint-up(md) {
+	.search-item__image {
+		width: 180px;
+		height: 180px;
+	}
+
+	.search-item__content {
+		width: auto;
+
+		.title {
+			max-width: 400px;
+		}
+	}
+
+	.search-item__location {
+		margin: 0;
 	}
 }
